@@ -1,0 +1,28 @@
+<section class="page account-page">
+  <article class="card account-card">
+    <h2>Login</h2>
+    <p class="hint">Demo-Zugang: max.huber&#64;mrr-demo.de / demo1234</p>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <label>
+        E-Mail
+        <input type="email" formControlName="email" />
+      </label>
+
+      <label>
+        Passwort
+        <input type="password" formControlName="password" />
+      </label>
+
+      <label class="checkbox"><input type="checkbox" formControlName="rememberMe" /> Angemeldet bleiben</label>
+
+      <button class="action-button" type="submit">Anmelden</button>
+    </form>
+
+    <div class="links">
+      <a routerLink="/account/register">Neues Konto erstellen</a>
+      <a routerLink="/account/password-reset">Passwort vergessen</a>
+    </div>
+  </article>
+</section>

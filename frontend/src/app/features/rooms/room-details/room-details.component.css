@@ -1,0 +1,115 @@
+.subtitle {
+  color: var(--muted);
+  margin-top: -0.1rem;
+}
+
+.detail-card {
+  display: grid;
+  gap: 1rem;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.detail-header h2 {
+  margin: 0;
+}
+
+.price-box {
+  background: #173a63;
+  color: #f6efe3;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  display: grid;
+  gap: 0.1rem;
+}
+
+.rating {
+  font-size: 0.85rem;
+  color: #f2dfba;
+}
+
+.hero-room-image {
+  width: 100%;
+  height: clamp(260px, 42vw, 460px);
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.thumbnail-row {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.thumb {
+  border: 1px solid rgba(23, 58, 99, 0.25);
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background: transparent;
+}
+
+.thumb.active {
+  outline: 2px solid #1f4575;
+}
+
+.thumb img {
+  width: 86px;
+  height: 66px;
+  object-fit: cover;
+  display: block;
+}
+
+.long-text {
+  color: #2c3d56;
+  line-height: 1.55;
+}
+
+.info-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.info-grid ul {
+  margin: 0;
+  padding-left: 1rem;
+  line-height: 1.5;
+}
+
+.feedback-card {
+  border: 1px solid rgba(23, 58, 99, 0.18);
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: #f8fbff;
+  margin-bottom: 0.7rem;
+}
+
+.feedback-head {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.feedback-card p {
+  margin-bottom: 0;
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
+.error {
+  color: #8a3b1d;
+}

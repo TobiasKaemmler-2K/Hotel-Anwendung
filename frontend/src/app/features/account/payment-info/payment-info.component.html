@@ -1,0 +1,16 @@
+<section class="page" *ngIf="paymentMethod">
+  <article class="card">
+    <h2>Zahlungsinformationen</h2>
+    <p class="hint">Prototyp-Hinweis: Es werden keine echten Zahlungsdaten verarbeitet oder gespeichert.</p>
+
+    <div class="grid payment-grid">
+      <p><strong>Karteninhaber:</strong> {{ paymentMethod.cardHolder }}</p>
+      <p><strong>Kartenanbieter:</strong> {{ paymentMethod.cardProvider }}</p>
+      <p><strong>Kartennummer:</strong> {{ paymentMethod.maskedCardNumber }}</p>
+      <p><strong>Ablaufdatum:</strong> {{ paymentMethod.expiryDate }}</p>
+      <p><strong>Rechnungsadresse:</strong> {{ paymentMethod.billingAddress }}</p>
+    </div>
+
+    <a class="action-button" routerLink="/account/settings">Zahlungsart bearbeiten</a>
+  </article>
+</section>

@@ -1,0 +1,117 @@
+:root {
+  --background: #eef2f7;
+  --surface: #ffffff;
+  --surface-alt: #f2f5fa;
+  --text: #172338;
+  --muted: #5f6c7c;
+  --accent: #1f4575;
+  --accent-strong: #15345b;
+  --gold: #be9b5f;
+  --warning: #a14a32;
+  --radius: 12px;
+}
+
+body.dark-mode {
+  --background: #0f1a2a;
+  --surface: #182537;
+  --surface-alt: #203249;
+  --text: #e8edf4;
+  --muted: #9fb0c5;
+  --accent: #3d79c6;
+  --accent-strong: #2f5f9e;
+  --gold: #d6b67e;
+  --warning: #d27158;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", "Times New Roman", serif;
+  background:
+    linear-gradient(180deg, #eef2f7 0%, #e5ebf2 100%),
+    linear-gradient(45deg, rgba(134, 171, 217, 0.08) 25%, transparent 25%, transparent 50%, rgba(134, 171, 217, 0.08) 50%, rgba(134, 171, 217, 0.08) 75%, transparent 75%, transparent);
+  background-size: auto, 24px 24px;
+  color: var(--text);
+}
+
+body.dark-mode {
+  background:
+    linear-gradient(180deg, #0f1a2a 0%, #142337 100%),
+    linear-gradient(45deg, rgba(110, 145, 191, 0.12) 25%, transparent 25%, transparent 50%, rgba(110, 145, 191, 0.12) 50%, rgba(110, 145, 191, 0.12) 75%, transparent 75%, transparent);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(18, 36, 67, 0.1);
+  border: 1px solid rgba(31, 69, 117, 0.08);
+  padding: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.action-button {
+  background-color: var(--accent);
+  color: #ffffff;
+  border: 0;
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: var(--accent-strong);
+}
+
+.action-button.secondary {
+  background-color: #f6f2ea;
+  color: #2d3f58;
+  border: 1px solid rgba(190, 155, 95, 0.45);
+}
+
+.status-pill {
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-pill.active {
+  background: #d5f5e3;
+  color: #166534;
+}
+
+.status-pill.cancelled {
+  background: #fbe2e0;
+  color: #8a3b1d;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 0.9rem;
+  }
+}

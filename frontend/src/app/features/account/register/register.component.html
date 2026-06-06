@@ -1,0 +1,43 @@
+<section class="page account-page">
+  <article class="card account-card">
+    <h2>Registrierung</h2>
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="grid two-col">
+        <label>
+          Vorname
+          <input type="text" formControlName="firstName" />
+        </label>
+
+        <label>
+          Nachname
+          <input type="text" formControlName="lastName" />
+        </label>
+      </div>
+
+      <label>
+        E-Mail
+        <input type="email" formControlName="email" />
+      </label>
+
+      <div class="grid two-col">
+        <label>
+          Passwort
+          <input type="password" formControlName="password" />
+        </label>
+
+        <label>
+          Passwort wiederholen
+          <input type="password" formControlName="repeatPassword" />
+        </label>
+      </div>
+
+      <button class="action-button" type="submit">Konto erstellen</button>
+    </form>
+
+    <div class="links">
+      <a routerLink="/account/login">Bereits registriert? Zum Login</a>
+    </div>
+  </article>
+</section>

@@ -1,0 +1,45 @@
+<header class="topbar">
+  <div class="flag-line"></div>
+  <div class="brand-area">
+    <div class="logo-mark">MRR</div>
+    <div>
+      <div class="brand">{{ hotelName }}</div>
+      <div class="brand-subtitle">Luxushotel in der Muenchner Altstadt</div>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Start</a>
+    <a routerLink="/rooms" routerLinkActive="active">Zimmer</a>
+    <a routerLink="/reservations" routerLinkActive="active">Buchungen</a>
+    <a routerLink="/reservations/new" routerLinkActive="active">Neue Reservierung</a>
+    <a routerLink="/account/profile" routerLinkActive="active" *ngIf="currentUser">Mein Account</a>
+    <a routerLink="/account/login" routerLinkActive="active" *ngIf="!currentUser">Login</a>
+    <button type="button" class="logout-button" *ngIf="currentUser" (click)="logout()">Logout</button>
+  </nav>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <div class="footer-content page">
+    <div>
+      <strong>{{ hotelName }}</strong>
+      <p>Marienplatz 18, 80331 Muenchen</p>
+    </div>
+    <p>Exklusive Gastlichkeit zwischen Residenz, Viktualienmarkt und Isartor.</p>
+  </div>
+</footer>
+
+<section class="cookie-banner" *ngIf="showCookieBanner">
+  <div class="cookie-content">
+    <p>
+      Wir verwenden Cookies fuer eine verbesserte Buchungserfahrung und zur anonymen Analyse der Nutzung.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="action-button" (click)="acceptCookies()">Akzeptieren</button>
+      <button type="button" class="action-button secondary" (click)="declineCookies()">Ablehnen</button>
+    </div>
+  </div>
+</section>

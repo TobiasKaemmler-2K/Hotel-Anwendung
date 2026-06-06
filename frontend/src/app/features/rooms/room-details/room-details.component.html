@@ -1,0 +1,125 @@
+<section class="page">
+  <p *ngIf="loading">Zimmerdetails werden geladen...</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <article class="card detail-card" *ngIf="room">
+    <div class="detail-header">
+      <div>
+        <h2>{{ room.name }}</h2>
+        <p class="subtitle">Kategorie: {{ room.category }} | Zimmer {{ room.roomNumber }}</p>
+      </div>
+      <div class="price-box">
+        {{ room.pricePerNight | currency:'EUR' }} / Nacht
+        <span class="rating">{{ room.rating }} / 5</span>
+      </div>
+    </div>
+
+    <div class="gallery-wrap">
+      <img class="hero-room-image" [src]="selectedImage || room.images[0]" [alt]="room.name" />
+      <div class="thumbnail-row">
+        <button
+          *ngFor="let image of room.images"
+          type="button"
+          class="thumb"
+          [class.active]="(selectedImage || room.images[0]) === image"
+          (click)="selectImage(image)"
+        >
+          <img [src]="image" [alt]="room.name + ' Detailbild'" />
+        </button>
+      </div>
+    </div>
+
+    <p class="long-text">{{ room.longDescription || room.description }}</p>
+
+    <div class="grid info-grid">
+      <div>
+        <h3>Zimmerdetails</h3>
+        <ul>
+          <li><strong>Zimmergroesse:</strong> {{ room.roomSize }} m2</li>
+          <li><strong>Maximale Gaesteanzahl:</strong> {{ room.capacity }}</li>
+          <li><strong>Bettenart:</strong> {{ room.bedType }}</li>
+          <li><strong>Etage:</strong> {{ room.floor }}</li>
+          <li><strong>Ausblick:</strong> {{ room.outlook }}</li>
+          <li><strong>Verfuegbarkeit:</strong> {{ room.availabilityStatus }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Vollstaendige Ausstattung</h3>
+        <ul>
+          <li *ngFor="let amenity of room.amenities">{{ amenity }}</li>
+          <li>{{ hasFeature(room.hasWifi) ? 'Highspeed-WLAN' : 'WLAN nicht enthalten' }}</li>
+          <li>{{ hasFeature(room.hasTv) ? 'Smart-TV' : 'Ohne TV' }}</li>
+          <li>{{ hasFeature(room.hasAirConditioning) ? 'Klimatisierung' : 'Ohne Klimaanlage' }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Badezimmerausstattung</h3>
+        <ul>
+          <li *ngFor="let bathroomAmenity of room.bathroomAmenities">{{ bathroomAmenity }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Technische Ausstattung</h3>
+        <ul>
+          <li *ngFor="let technicalAmenity of room.technicalAmenities">{{ technicalAmenity }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Luxusmerkmale</h3>
+        <ul>
+          <li *ngFor="let luxuryFeature of room.luxuryFeatures">{{ luxuryFeature }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Enthaltene Services</h3>
+        <ul>
+          <li *ngFor="let service of room.services">{{ service }}</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Besondere Merkmale</h3>
+        <ul>
+          <li *ngFor="let highlight of room.highlights">{{ highlight }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid info-grid">
+      <div>
+        <h3>Stornierungsbedingungen</h3>
+        <p>{{ room.cancellationPolicy }}</p>
+      </div>
+      <div>
+        <h3>Check-in Hinweise</h3>
+        <p>{{ room.checkInNote }}</p>
+      </div>
+      <div>
+        <h3>Check-out Hinweise</h3>
+        <p>{{ room.checkOutNote }}</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>Gaestekommentare</h3>
+      <article class="feedback-card" *ngFor="let feedback of room.guestFeedback">
+        <div class="feedback-head">
+          <strong>{{ feedback.guestName }}</strong>
+          <span>{{ feedback.rating }} / 5</span>
+          <small>{{ feedback.date }}</small>
+        </div>
+        <p>{{ feedback.comment }}</p>
+      </article>
+    </div>
+
+    <div class="actions">
+      <a class="action-button" [routerLink]="['/reservations/new']" [queryParams]="{ roomId: room.id }">Jetzt reservieren</a>
+      <a class="action-button secondary" routerLink="/rooms">Zurueck zur Zimmeruebersicht</a>
+    </div>
+  </article>
+</section>

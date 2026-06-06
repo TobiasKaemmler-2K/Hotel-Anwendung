@@ -1,0 +1,33 @@
+.account-page {
+  display: grid;
+  place-items: center;
+}
+
+.account-card {
+  width: min(620px, 100%);
+}
+
+.two-col {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.7rem;
+}
+
+input {
+  border: 1px solid #cfd9e6;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.links {
+  margin-top: 1rem;
+}
+
+.error {
+  color: #8a3b1d;
+}

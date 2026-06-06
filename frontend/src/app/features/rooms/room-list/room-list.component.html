@@ -1,0 +1,143 @@
+<section class="page">
+  <h2>Zimmer & Suiten</h2>
+
+  <button class="action-button secondary mobile-filter-toggle" type="button" (click)="toggleMobileFilters()">
+    {{ mobileFiltersOpen ? 'Filter ausblenden' : 'Filter anzeigen' }}
+  </button>
+
+  <form class="card filter-form" [class.mobile-open]="mobileFiltersOpen" [formGroup]="filterForm" (ngSubmit)="applyFilters()">
+    <div class="grid fields">
+      <label>
+        Kategorie
+        <select formControlName="category">
+          <option value="">Alle</option>
+          <option value="classic">Classic</option>
+          <option value="deluxe">Deluxe</option>
+          <option value="junior-suite">Junior Suite</option>
+          <option value="residenz-suite">Residenz Suite</option>
+        </select>
+      </label>
+
+      <label>
+        Min. Preis
+        <input type="number" min="0" formControlName="minPrice" />
+      </label>
+
+      <label>
+        Max. Preis
+        <input type="number" min="0" formControlName="maxPrice" />
+      </label>
+
+      <label>
+        Gaesteanzahl
+        <input type="number" min="1" formControlName="guestCount" />
+      </label>
+
+      <label>
+        Zimmergroesse ab (m2)
+        <input type="number" min="15" formControlName="minRoomSize" />
+      </label>
+
+      <label>
+        Ausstattung (Textsuche)
+        <input type="text" placeholder="z. B. Spa, Smart-TV" formControlName="amenity" />
+      </label>
+
+      <label>
+        Service (Textsuche)
+        <input type="text" placeholder="z. B. Concierge" formControlName="service" />
+      </label>
+
+      <label>
+        Mindestbewertung
+        <input type="number" min="1" max="5" step="0.1" formControlName="minRating" />
+      </label>
+
+      <label>
+        Ausblick
+        <input type="text" placeholder="z. B. Altstadt" formControlName="outlook" />
+      </label>
+
+      <label>
+        Bettenart
+        <input type="text" placeholder="z. B. King-Size" formControlName="bedType" />
+      </label>
+
+      <label>
+        Verfuegbarkeit
+        <select formControlName="availabilityStatus">
+          <option value="">Alle</option>
+          <option value="available">Verfuegbar</option>
+          <option value="limited">Begrenzt</option>
+          <option value="booked">Ausgebucht</option>
+        </select>
+      </label>
+
+      <label>
+        Sortierung
+        <select formControlName="sortBy">
+          <option value="price-asc">Preis aufsteigend</option>
+          <option value="price-desc">Preis absteigend</option>
+          <option value="rating-desc">Bewertung</option>
+          <option value="size-desc">Zimmergroesse</option>
+        </select>
+      </label>
+
+      <label>
+        Verfügbar ab
+        <input type="date" formControlName="availableFrom" />
+      </label>
+
+      <label>
+        Verfügbar bis
+        <input type="date" formControlName="availableTo" />
+      </label>
+    </div>
+
+    <div class="feature-checks">
+      <label><input type="checkbox" formControlName="wifi" /> WLAN</label>
+      <label><input type="checkbox" formControlName="tv" /> TV</label>
+      <label><input type="checkbox" formControlName="airConditioning" /> Klimaanlage</label>
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="action-button">Filter anwenden</button>
+      <button type="button" class="action-button secondary" (click)="resetFilters()">Zurücksetzen</button>
+    </div>
+  </form>
+
+  <div class="active-filters" *ngIf="activeFilters.length > 0">
+    <span class="filter-chip" *ngFor="let activeFilter of activeFilters">{{ activeFilter }}</span>
+  </div>
+
+  <p *ngIf="loading">Zimmer werden geladen...</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <div class="grid room-grid" *ngIf="!loading && rooms.length > 0">
+    <article class="card room-card" *ngFor="let room of rooms; trackBy: trackByRoomId">
+      <img [src]="room.images[0]" [alt]="room.name" loading="lazy" />
+      <div class="room-headline">
+        <h3>{{ room.name }}</h3>
+        <span class="category-badge">{{ room.category }}</span>
+      </div>
+      <p class="description">{{ room.shortDescription || room.description }}</p>
+      <p><strong>Preis pro Nacht:</strong> {{ room.pricePerNight | currency:'EUR' }}</p>
+      <p><strong>Bewertung:</strong> {{ room.rating }} / 5</p>
+      <p><strong>Max. Gaeste:</strong> {{ room.capacity }}</p>
+      <p><strong>Zimmergroesse:</strong> {{ room.roomSize }} m2</p>
+      <p><strong>Ausblick:</strong> {{ room.outlook }}</p>
+      <p><strong>Bettenart:</strong> {{ room.bedType }}</p>
+      <ul>
+        <li [class.off]="!hasFeature(room.hasWifi)">WLAN</li>
+        <li [class.off]="!hasFeature(room.hasTv)">TV</li>
+        <li [class.off]="!hasFeature(room.hasAirConditioning)">Klimaanlage</li>
+      </ul>
+      <div class="actions">
+        <a class="action-button secondary" [routerLink]="['/rooms', room.id]">Details ansehen</a>
+        <a class="action-button" [routerLink]="['/reservations/new']" [queryParams]="{ roomId: room.id }">Reservieren</a>
+      </div>
+    </article>
+  </div>
+
+  <p *ngIf="!loading && !errorMessage && rooms.length === 0">Keine Zimmer für diese Filter gefunden.</p>
+</section>

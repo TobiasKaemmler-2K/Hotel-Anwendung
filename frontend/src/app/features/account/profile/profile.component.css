@@ -1,0 +1,16 @@
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.profile-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.history-row {
+  border-bottom: 1px solid rgba(23, 58, 99, 0.12);
+  margin-bottom: 0.6rem;
+}

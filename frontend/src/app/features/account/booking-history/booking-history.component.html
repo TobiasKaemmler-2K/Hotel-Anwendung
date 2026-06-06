@@ -1,0 +1,36 @@
+<section class="page">
+  <article class="card">
+    <h2>Buchungshistorie</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Buchungsnummer</th>
+            <th>Zimmername</th>
+            <th>Zeitraum</th>
+            <th>Gaeste</th>
+            <th>Gesamtpreis</th>
+            <th>Status</th>
+            <th>Zahlung</th>
+            <th>Aktion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let booking of history">
+            <td>{{ booking.bookingNumber }}</td>
+            <td>{{ booking.roomName }}</td>
+            <td>{{ booking.period }}</td>
+            <td>{{ booking.guestCount }}</td>
+            <td>{{ booking.totalPrice | currency:'EUR' }}</td>
+            <td>{{ booking.bookingStatus }}</td>
+            <td>{{ booking.paymentStatus }}</td>
+            <td>
+              <button type="button" class="action-button secondary" (click)="showDetails(booking.bookingNumber)">Details anzeigen</button>
+              <button type="button" class="action-button" (click)="rebook()">Erneut buchen</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>

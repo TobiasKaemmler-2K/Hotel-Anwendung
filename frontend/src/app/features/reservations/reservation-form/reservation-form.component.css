@@ -1,0 +1,47 @@
+h2 {
+  margin-top: 0;
+}
+
+.reservation-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.fields {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.92rem;
+}
+
+input,
+select {
+  border: 1px solid #ccd4dd;
+  border-radius: 8px;
+  padding: 0.45rem;
+}
+
+fieldset {
+  border: 1px solid #d5dde5;
+  border-radius: 10px;
+  padding: 0.8rem;
+}
+
+legend {
+  padding: 0 0.4rem;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.error {
+  color: #8a3b1d;
+}

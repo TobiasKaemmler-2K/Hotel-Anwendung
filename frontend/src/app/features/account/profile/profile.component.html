@@ -1,0 +1,28 @@
+<section class="page" *ngIf="profile">
+  <div class="header-row">
+    <h2>Mein Profil</h2>
+    <a class="action-button secondary" routerLink="/account/settings">Daten bearbeiten</a>
+  </div>
+
+  <article class="card">
+    <div class="grid profile-grid">
+      <p><strong>Vorname:</strong> {{ profile.firstName }}</p>
+      <p><strong>Nachname:</strong> {{ profile.lastName }}</p>
+      <p><strong>E-Mail:</strong> {{ profile.email }}</p>
+      <p><strong>Telefon:</strong> {{ profile.phone }}</p>
+      <p><strong>Adresse:</strong> {{ profile.address }}</p>
+      <p><strong>Geburtsdatum:</strong> {{ profile.birthDate || 'Nicht angegeben' }}</p>
+      <p><strong>Sprache:</strong> {{ profile.preferredLanguage }}</p>
+      <p><strong>Newsletter:</strong> {{ profile.newsletterEnabled ? 'Aktiv' : 'Nicht aktiv' }}</p>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3>Kurze Buchungshistorie</h3>
+    <div class="history-row" *ngFor="let booking of bookingHistory">
+      <p><strong>{{ booking.bookingNumber }}</strong> - {{ booking.roomName }}</p>
+      <p>{{ booking.period }} | {{ booking.totalPrice | currency:'EUR' }}</p>
+    </div>
+    <a class="action-button" routerLink="/account/booking-history">Gesamte Historie anzeigen</a>
+  </article>
+</section>

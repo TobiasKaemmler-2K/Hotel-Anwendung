@@ -1,0 +1,50 @@
+<section class="page">
+  <article class="card">
+    <h2>Account-Einstellungen</h2>
+    <p class="hint">Prototyp: Aenderungen wirken lokal und werden im Browser gespeichert.</p>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <h3>Darstellung</h3>
+      <label class="checkbox"><input type="checkbox" formControlName="darkModeEnabled" /> Darkmode aktivieren</label>
+
+      <h3>Zugangsdaten</h3>
+      <label>
+        E-Mail aendern
+        <input type="email" formControlName="email" />
+      </label>
+
+      <div class="grid two-col">
+        <label>
+          Aktuelles Passwort
+          <input type="password" formControlName="currentPassword" />
+        </label>
+
+        <label>
+          Neues Passwort
+          <input type="password" formControlName="newPassword" />
+        </label>
+      </div>
+
+      <h3>Benachrichtigungen</h3>
+      <label class="checkbox"><input type="checkbox" formControlName="bookingUpdates" /> Buchungsupdates</label>
+      <label class="checkbox"><input type="checkbox" formControlName="offers" /> Angebote</label>
+      <label class="checkbox"><input type="checkbox" formControlName="reminders" /> Erinnerungen</label>
+      <label class="checkbox"><input type="checkbox" formControlName="newsletterEnabled" /> Newsletter abonnieren</label>
+
+      <h3>Zahlungsinformationen</h3>
+      <label>
+        Gespeicherte Zahlungsart
+        <input type="text" formControlName="paymentReference" readonly />
+      </label>
+
+      <button class="action-button" type="submit">Einstellungen speichern</button>
+      <p class="success" *ngIf="savedMessage">{{ savedMessage }}</p>
+    </form>
+  </article>
+
+  <article class="card danger-zone">
+    <h3>Account loeschen</h3>
+    <p>Nur als sichtbare Option im Prototyp. Es wird keine echte Loeschlogik ausgefuehrt.</p>
+    <button type="button" class="action-button secondary">Account-Loeschung anfragen</button>
+  </article>
+</section>

@@ -1,0 +1,38 @@
+<section class="page">
+  <div class="header-row">
+    <h2>Buchungsübersicht</h2>
+    <a class="action-button" routerLink="/reservations/new">Neue Reservierung</a>
+  </div>
+
+  <p *ngIf="loading">Reservierungen werden geladen...</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <div class="grid reservation-grid" *ngIf="!loading && reservations.length > 0">
+    <article class="card" *ngFor="let reservation of reservations">
+      <div class="card-header">
+        <h3>Reservierung #{{ reservation.id }}</h3>
+        <span class="status-pill" [ngClass]="reservation.status">
+          {{ reservation.status === 'active' ? 'Aktiv' : 'Storniert' }}
+        </span>
+      </div>
+
+      <p>
+        <strong>Zimmer:</strong>
+        {{ reservation.roomNumber }} ({{ reservation.roomType }})
+      </p>
+      <p>
+        <strong>Kunde:</strong>
+        {{ reservation.customerFirstName }} {{ reservation.customerLastName }}
+      </p>
+      <p><strong>Zeitraum:</strong> {{ reservation.checkInDate }} bis {{ reservation.checkOutDate }}</p>
+      <p><strong>Gäste:</strong> {{ reservation.guestCount }}</p>
+
+      <div class="actions" *ngIf="reservation.status === 'active'">
+        <a class="action-button secondary" [routerLink]="['/reservations', reservation.id, 'edit']">Bearbeiten</a>
+        <button class="action-button" type="button" (click)="cancelReservation(reservation.id)">Stornieren</button>
+      </div>
+    </article>
+  </div>
+
+  <p *ngIf="!loading && !errorMessage && reservations.length === 0">Noch keine Reservierungen vorhanden.</p>
+</section>

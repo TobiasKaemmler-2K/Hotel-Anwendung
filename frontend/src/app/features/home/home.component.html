@@ -1,0 +1,114 @@
+<section class="hero-shell">
+  <div
+    class="hero-image"
+    *ngFor="let slide of heroSlides; let slideIndex = index"
+    [class.active]="slideIndex === currentSlideIndex"
+    [style.background-image]="'linear-gradient(rgba(16, 37, 62, 0.55), rgba(16, 37, 62, 0.72)), url(' + slide.imageUrl + ')'"
+  ></div>
+  <div class="page hero-content">
+    <div class="hero-text card">
+      <h1>{{ hotelName }}</h1>
+      <p class="hero-slogan">{{ heroSlides[currentSlideIndex].slogan }}</p>
+      <p>
+        Zeitlose Eleganz im Herzen der Muenchner Altstadt. Die MuenchnerRoyalResidenz verbindet
+        bayerische Gastfreundschaft mit modernem Luxus, nur wenige Schritte vom Marienplatz entfernt.
+      </p>
+      <div class="hero-actions">
+        <a class="action-button" routerLink="/rooms">Zimmer ansehen</a>
+        <a class="action-button secondary" routerLink="/reservations/new">Direkt reservieren</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="slider-arrow left" type="button" (click)="previousSlide()">&#10094;</button>
+  <button class="slider-arrow right" type="button" (click)="nextSlide()">&#10095;</button>
+  <div class="slider-dots">
+    <button
+      type="button"
+      *ngFor="let slide of heroSlides; let dotIndex = index"
+      [class.active]="dotIndex === currentSlideIndex"
+      (click)="goToSlide(dotIndex)"
+      aria-label="Slideshow-Bild"
+    ></button>
+  </div>
+</section>
+
+<section class="page grid section-grid">
+  <article class="card">
+    <h2>Willkommen im Luxushotel der Altstadt</h2>
+    <p>
+      Ob Wochenendtrip, Business-Aufenthalt oder besondere Feier: Unsere Zimmer und Suiten sind auf Ruhe,
+      Komfort und individuelle Betreuung ausgelegt. Warme Materialien, hochwertige Stoffe und dezente
+      bayerische Akzente praegen den Charakter des Hauses.
+    </p>
+  </article>
+
+  <article class="card">
+    <h2>Lage im Zentrum der Muenchner Altstadt</h2>
+    <p>
+      Adresse: Marienplatz 18, 80331 Muenchen. Umgeben von historischen Fassaden, exklusiven Boutiquen und
+      kulinarischen Highlights wohnen Sie direkt im kulturellen Herzen der Stadt.
+    </p>
+  </article>
+</section>
+
+<section class="page card image-gallery">
+  <h2>Impressionen</h2>
+  <div class="grid gallery-grid">
+    <img *ngFor="let image of highlightImages" [src]="image" alt="Hotelbereich MuenchnerRoyalResidenz" loading="lazy" />
+  </div>
+</section>
+
+<section class="page card image-gallery">
+  <h2>Hotelbereiche</h2>
+  <div class="grid showcase-grid">
+    <figure class="showcase-item" *ngFor="let section of showcaseSections">
+      <img [src]="section.imageUrl" [alt]="section.title" loading="lazy" />
+      <figcaption>{{ section.title }}</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="page grid two-columns">
+  <article class="card">
+    <h2>Hotelausstattung</h2>
+    <ul>
+      <li *ngFor="let amenity of hotelAmenities">{{ amenity }}</li>
+    </ul>
+  </article>
+
+  <article class="card">
+    <h2>Services fuer unsere Gaeste</h2>
+    <ul>
+      <li *ngFor="let service of guestServices">{{ service }}</li>
+    </ul>
+  </article>
+</section>
+
+<section class="page grid two-columns location-section">
+  <article class="card map-box">
+    <h2>Lage & Umgebung</h2>
+    <iframe
+      title="Karte MuenchnerRoyalResidenz"
+      src="https://www.google.com/maps?q=Marienplatz+18,+80331+Muenchen&output=embed"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </article>
+
+  <article class="card">
+    <h2>Sehenswuerdigkeiten in der Naehe</h2>
+    <div class="sights-grid">
+      <div class="sight-item" *ngFor="let sight of sights">
+        <h3>{{ sight.name }}</h3>
+        <p>{{ sight.distance }} - {{ sight.walkTime }}</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="page card final-cta">
+  <h2>Ihre Suite in der Muenchner Altstadt wartet</h2>
+  <p>Entdecken Sie alle verfuegbaren Zimmerkategorien und buchen Sie Ihren Aufenthalt in wenigen Schritten.</p>
+  <a class="action-button" routerLink="/rooms">Zur Zimmeruebersicht</a>
+</section>

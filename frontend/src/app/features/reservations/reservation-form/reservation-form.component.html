@@ -1,0 +1,67 @@
+<section class="page">
+  <h2>{{ isEditMode ? 'Reservierung bearbeiten' : 'Neue Reservierung' }}</h2>
+
+  <p *ngIf="loading">Daten werden geladen...</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <form class="card reservation-form" [formGroup]="reservationForm" (ngSubmit)="submitForm()">
+    <div class="grid fields">
+      <label>
+        Zimmer
+        <select formControlName="roomId">
+          <option [ngValue]="0" disabled>Bitte auswählen</option>
+          <option *ngFor="let room of rooms" [ngValue]="room.id">
+            Zimmer {{ room.roomNumber }} - {{ room.type }} ({{ room.pricePerNight | currency:'EUR' }})
+          </option>
+        </select>
+      </label>
+
+      <label>
+        Check-In
+        <input type="date" formControlName="checkInDate" />
+      </label>
+
+      <label>
+        Check-Out
+        <input type="date" formControlName="checkOutDate" />
+      </label>
+
+      <label>
+        Gästeanzahl
+        <input type="number" min="1" formControlName="guestCount" />
+      </label>
+    </div>
+
+    <fieldset formGroupName="customer">
+      <legend>Kundendaten</legend>
+      <div class="grid fields">
+        <label>
+          Vorname
+          <input type="text" formControlName="firstName" />
+        </label>
+
+        <label>
+          Nachname
+          <input type="text" formControlName="lastName" />
+        </label>
+
+        <label>
+          E-Mail
+          <input type="email" formControlName="email" />
+        </label>
+
+        <label>
+          Telefon
+          <input type="text" formControlName="phone" />
+        </label>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="action-button" [disabled]="submitting">
+        {{ submitting ? 'Speichern...' : (isEditMode ? 'Änderungen speichern' : 'Reservierung erstellen') }}
+      </button>
+      <a class="action-button secondary" routerLink="/reservations">Abbrechen</a>
+    </div>
+  </form>
+</section>
